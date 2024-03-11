@@ -70,6 +70,7 @@ return [
         'use' => [
             // Reliese\Database\Eloquent\BitBooleans::class,
             // Reliese\Database\Eloquent\BlamableBehavior::class,
+            Illuminate\Database\Eloquent\Factories\HasFactory::class,
         ],
 
         /*
@@ -323,7 +324,7 @@ return [
         |
         */
 
-        'lower_table_name_first' => false,
+        'lower_table_name_first' => true,
 
         /*
         |--------------------------------------------------------------------------
@@ -403,7 +404,7 @@ return [
         | You can disable pluralization tables and relations
         |
         */
-        'pluralize' => true,
+        'pluralize' => false,
 
         /*
         |--------------------------------------------------------------------------
