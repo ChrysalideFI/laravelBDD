@@ -52,7 +52,7 @@ Pour le sch├®ma logique intitule_cours, num_utilisateur, seront introduites e
 Un chapitre repr├®sente une subdivision d\'\'un cours et sert ├á regrouper les parties d\'\'un cours.
 Pour le sch├®ma logique intitule_cours sera introduit en cl├® ├®trang├¿re (FK) pour cette table dans le sch├®ma logique. Aussi, la cl├® primaire (PK)  sera compos├® de cette derni├¿re et de num_chapitre pour cette table afin d\'\'identifier de mani├¿re unique, un chapitre d\'\'un cours.');
             $table->integer('COURS_num_cours')->index('chapitres_cours');
-            $table->integer('num_chapitre', true)->comment('Exemple : 1 pour chapitre 1. Permet d\'\'ordonner les chapitres (ordre croissant)');
+            $table->integer('num_chapitre')->comment('Exemple : 1 pour chapitre 1. Permet d\'\'ordonner les chapitres (ordre croissant)');
             $table->text('titre_chapitre')->comment('Ajout de notre part, nous ne voyons pas un chapitre sans titre.');
 
             $table->primary(['num_chapitre', 'COURS_num_cours']);
