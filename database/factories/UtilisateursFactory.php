@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Comments;
+use App\Models\Utilisateurs;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Comments>
+ * @extends Factory<\App\Models\Utilisateurs>
  */
-final class CommentsFactory extends Factory
+final class UtilisateursFactory extends Factory
 {
     /**
     * The name of the factory's corresponding model.
     *
     * @var string
     */
-    protected $model = Comments::class;
+    protected $model = Utilisateurs::class;
 
     /**
     * Define the model's default state.
@@ -27,6 +27,8 @@ final class CommentsFactory extends Factory
     public function definition(): array
     {
         return [
+            'nom' => fake()->text,
+            'prenom' => fake()->text,
         ];
     }
 }

@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Users;
+use App\Models\UtilisateursCours;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Users>
+ * @extends Factory<\App\Models\UtilisateursCours>
  */
-final class UsersFactory extends Factory
+final class UtilisateursCoursFactory extends Factory
 {
     /**
     * The name of the factory's corresponding model.
     *
     * @var string
     */
-    protected $model = Users::class;
+    protected $model = UtilisateursCours::class;
 
     /**
     * Define the model's default state.
@@ -27,7 +27,8 @@ final class UsersFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => fake()->safeEmail,
+            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
+            'COURS_num_cours' => \App\Models\Cours::factory(),
         ];
     }
 }
