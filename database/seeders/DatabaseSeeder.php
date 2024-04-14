@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         }
 
         //cours et UtilisateursCours
-        $cours = \App\Models\Cours::factory(20)->create(); // Reste à ajouter dont 2 payant
+        $cours = \App\Models\Cours::factory((5))->create();
         // For each Utilisateur, create a UtilisateursCours with a random Cours
         foreach ($utilisateurs as $utilisateur) {
         \App\Models\UtilisateursCours::factory()->create([
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        AvisCours::factory()->count(10)->create();
+        AvisCours::factory()->count(3)->create();
     //    $usersWithRole3 = \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get();
     //     for ($i = 0; $i < 10; $i++) {
     //         \App\Models\AvisCours::factory()->create([
@@ -122,8 +122,8 @@ class DatabaseSeeder extends Seeder
         $progression = Progressions::factory()->count(20)->create();
 
 
-        // Générer 50 inscriptions de cours
-        for ($i = 0; $i < 50; $i++) {
+        // Générer 3 inscriptions de cours
+        for ($i = 0; $i < 3; $i++) {
             // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
             $usersWithRole3 = \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get();
             $utilisateur = $usersWithRole3->random();
@@ -133,8 +133,8 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-         // Générer 50 inscriptions de sessions
-        for ($i = 0; $i < 50; $i++) {
+         // Générer 2 inscriptions de sessions
+        for ($i = 0; $i < 2; $i++) {
         // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
         $utilisateur = $usersWithRole3->random();
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use Exception;
+use database\Seeders\DatabaseSeeder;
 use App\Models\InscriptionsCours;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,7 +30,8 @@ final class InscriptionsCoursFactory extends Factory
     { static $num_inscription = 1;
         return [
             'num_inscription' => $num_inscription++,
-            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+            // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+            // 'UTILISATEURS_num_utilisateur' => utilisateur->num_utilisateur,
             'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
             'montant_paye' => $this->faker->optional(0.5)->randomFloat(2, 0, 1000) ?? 0,
             'paye' => $this->faker->randomElement(['oui', 'non']),
@@ -37,4 +40,7 @@ final class InscriptionsCoursFactory extends Factory
             'date_insc_cours' => fake()->date(),
         ];
     }
+
+
+
 }
