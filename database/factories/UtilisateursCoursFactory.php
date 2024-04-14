@@ -28,7 +28,7 @@ final class UtilisateursCoursFactory extends Factory
     {
         return [
             // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            // 'COURS_num_cours' => \App\Models\Cours::factory(),
+            // 'COURS_num_cours' => \App\Models\Cours::factory(), //
         ];
     }
 }

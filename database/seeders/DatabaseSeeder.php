@@ -93,21 +93,34 @@ class DatabaseSeeder extends Seeder
     //     }
 
     //chapitres
-        $cours = \App\Models\Cours::all();
+    $cours = \App\Models\Cours::all();
 
-        foreach ($cours as $unCours) {
-            $numChapitres = rand(3, 6);
+foreach ($cours as $unCours) {
+    $numChapitres = rand(3, 6);
 
-            for ($i = 0; $i < $numChapitres; $i++) {
-                \App\Models\Chapitres::factory()->create([
-                    'COURS_num_cours' => $unCours->num_cours,
-                    'num_chapitre' => $i + 1,
-                    // Add any other fields you need here
-                ]);
-            }
+    for ($i = 0; $i < $numChapitres; $i++) {
+        $chapitre = \App\Models\Chapitres::factory()->createOne([
+            'COURS_num_cours' => $unCours->num_cours,
+            'num_chapitre' => $i + 1,
+            // Add any other fields you need here
+        ]);
+
+        $numParties = rand(2, 5);
+
+        for ($j = 0; $j < $numParties; $j++) {
+            \App\Models\Parties::factory()->create([
+                'COURS_num_cours' => $unCours->num_cours,
+                'CHAPITRES_num_chapitre' => $chapitre->num_chapitre,
+                'num_partie' => $j + 1,
+                'progression' => rand(1, 1),
+            ]);
         }
-
     }
+
 }
+}
+}
+
+
 
 

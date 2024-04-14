@@ -32,7 +32,7 @@ final class RolesFactory extends Factory
 
         return [
             'num_role' => $num_role++,
-            'role' => $roles[$role_index++ % count($roles)]
+            'role' => $roles[$role_index++ % count($roles)] //
         ];
     }
 }

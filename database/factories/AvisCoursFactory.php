@@ -30,7 +30,7 @@ final class AvisCoursFactory extends Factory
             'UTILISATEURS_num_utilisateur' =>  \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
             'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
             'note_cours' => rand(0, 5),
-            'commentaire_cours' => fake()->optional()->text,
+            'commentaire_cours' => fake()->optional()->text, //
         ];
     }
 }

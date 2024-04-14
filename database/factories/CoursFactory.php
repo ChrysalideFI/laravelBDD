@@ -35,7 +35,7 @@ final class CoursFactory extends Factory
             'date_debut' => $this->faker->optional()->date(),
             'date_fin' => $this->faker->optional()->date(),
             'visible' => $this->faker->randomElement(['oui', 'non']),
-            'accessible' => $this->faker->randomElement(['oui', 'non']),
+            'accessible' => $this->faker->randomElement(['oui', 'non']),//
         ];
     }
 }

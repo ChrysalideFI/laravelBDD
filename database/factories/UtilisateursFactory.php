@@ -29,7 +29,7 @@ final class UtilisateursFactory extends Factory
         return [
             'num_utilisateur' => $num_utilisateur++,
             'nom' => $this->faker->lastName(),
-            'prenom' =>  $this->faker->firstName(),
+            'prenom' =>  $this->faker->firstName(), //
         ];
     }
 }

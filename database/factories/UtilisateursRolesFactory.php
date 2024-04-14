@@ -28,7 +28,7 @@ final class UtilisateursRolesFactory extends Factory
     {
         return [
             // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            // 'ROLES_num_role' => \App\Models\Roles::factory(),
+            // 'ROLES_num_role' => \App\Models\Roles::factory(), //
         ];
     }
 }

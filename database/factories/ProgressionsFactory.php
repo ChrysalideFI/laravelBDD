@@ -27,11 +27,11 @@ final class ProgressionsFactory extends Factory
     public function definition(): array
     {
         return [
-            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            'COURS_num_cours' => fake()->randomNumber(),
-            'CHAPITRES_num_chapitre' => fake()->randomNumber(),
-            'PARTIES_num_partie' => \App\Models\Parties::factory(),
-            'partie_termine' => fake()->word,
+            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'CHAPITRES_num_chapitre' => \App\Models\Chapitres::inRandomOrder()->first()->num_chapitre,
+            'PARTIES_num_partie' => \App\Models\Parties::inRandomOrder()->first()->num_partie,
+            'visible' => $this->faker->randomElement(['oui', 'non']),
         ];
     }
 }

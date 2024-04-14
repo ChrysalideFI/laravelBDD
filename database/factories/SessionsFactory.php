@@ -32,7 +32,7 @@ final class SessionsFactory extends Factory
             'format_session' => fake()->text,
             'date_heure_debut' => fake()->dateTime(),
             'date_heure_fin' => fake()->dateTime(),
-            'places_max' => fake()->optional()->numberBetween(10, 50),
+            'places_max' => fake()->optional()->numberBetween(10, 50), //
         ];
     }
 }

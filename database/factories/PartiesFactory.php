@@ -25,12 +25,12 @@ final class PartiesFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_partie = 1;
         return [
-            'COURS_num_cours' => fake()->randomNumber(),
-            'CHAPITRES_num_chapitre' => \App\Models\Chapitres::factory(),
-            'num_partie' => fake()->randomNumber(),
-            'titre_partie' => fake()->word,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'CHAPITRES_num_chapitre' => \App\Models\Chapitres::inRandomOrder()->first()->num_chapitre,
+            'num_partie' => $num_partie++,
+            'titre_partie' => $this->faker->sentence,
             'contenu_partie' => fake()->text,
         ];
     }

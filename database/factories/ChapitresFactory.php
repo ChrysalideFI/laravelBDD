@@ -29,7 +29,7 @@ final class ChapitresFactory extends Factory
         return [
             'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
             'num_chapitre' => $num_chapitre++,
-            'titre_chapitre' => $this->faker->sentence,
+            'titre_chapitre' => $this->faker->sentence, //
         ];
     }
 }

@@ -29,7 +29,7 @@ final class AssignationsSessionsFactory extends Factory
         return [
             // 'COURS_num_cours' => fake()->randomNumber(),
             // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            // 'SESSIONS_num_session' => \App\Models\Sessions::factory(),
+            // 'SESSIONS_num_session' => \App\Models\Sessions::factory(),//
         ];
     }
 }
