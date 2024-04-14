@@ -1,6 +1,6 @@
 mysql -u root -e "drop database bloglaravel"
 mysql -u root -e "create database bloglaravel"
-mysql -u root bloglaravel < database/test5.sql
+mysql -u root bloglaravel < database/CreateDB.sql
 
 
 rm -rf database/migrations/*

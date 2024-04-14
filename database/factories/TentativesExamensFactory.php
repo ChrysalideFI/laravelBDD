@@ -32,7 +32,7 @@ final class TentativesExamensFactory extends Factory
             'num_tentative' => fake()->randomNumber(),
             'date_tentative' => fake()->date(),
             'score_obtenu' => fake()->randomNumber(),
-            'valide' => fake()->boolean,
+            'valide' => fake()->word,
         ];
     }
 }

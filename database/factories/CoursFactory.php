@@ -28,14 +28,14 @@ final class CoursFactory extends Factory
     {
         return [
             'num_cours' => fake()->randomNumber(),
-            'intitule_cours' => fake()->text,
+            'intitule_cours' => fake()->word,
             'description' => fake()->text,
             'pre_requis' => fake()->text,
             'prix_cours' => fake()->randomFloat(),
             'date_debut' => fake()->optional()->date(),
             'date_fin' => fake()->optional()->date(),
-            'visible' => fake()->optional()->boolean,
-            'accessible' => fake()->optional()->boolean,
+            'visible' => fake()->optional()->word,
+            'accessible' => fake()->optional()->word,
         ];
     }
 }

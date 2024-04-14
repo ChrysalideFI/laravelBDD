@@ -28,8 +28,8 @@ final class UtilisateursFactory extends Factory
     {
         return [
             'num_utilisateur' => fake()->randomNumber(),
-            'nom' => fake()->text,
-            'prenom' => fake()->text,
+            'nom' => fake()->word,
+            'prenom' => fake()->word,
         ];
     }
 }

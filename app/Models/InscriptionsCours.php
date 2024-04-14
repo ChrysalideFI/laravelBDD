@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $UTILISATEURS_num_utilisateur
  * @property int $COURS_num_cours
  * @property float $montant_paye
- * @property bool $paye
+ * @property string $paye
  * @property Carbon $date_paiement
- * @property bool $inscription_valide
+ * @property string $inscription_valide
  * @property Carbon $date_insc_cours
  * 
  * @property Cours $cours
@@ -42,9 +42,7 @@ class InscriptionsCours extends Model
 		'UTILISATEURS_num_utilisateur' => 'int',
 		'COURS_num_cours' => 'int',
 		'montant_paye' => 'float',
-		'paye' => 'bool',
 		'date_paiement' => 'datetime',
-		'inscription_valide' => 'bool',
 		'date_insc_cours' => 'datetime'
 	];
 

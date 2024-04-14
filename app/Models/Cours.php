@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $prix_cours
  * @property Carbon|null $date_debut
  * @property Carbon|null $date_fin
- * @property bool|null $visible
- * @property bool|null $accessible
+ * @property string|null $visible
+ * @property string|null $accessible
  * 
  * @property Collection|AssignationsCours[] $assignations_cours
  * @property Collection|AvisCours[] $avis_cours
@@ -45,9 +45,7 @@ class Cours extends Model
 		'num_cours' => 'int',
 		'prix_cours' => 'float',
 		'date_debut' => 'datetime',
-		'date_fin' => 'datetime',
-		'visible' => 'bool',
-		'accessible' => 'bool'
+		'date_fin' => 'datetime'
 	];
 
 	protected $fillable = [

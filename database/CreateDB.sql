@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-04-14 16:11:55.612
+-- Last modification date: 2024-04-14 17:08:52.077
 
 -- tables
 -- Table: ASSIGNATIONS_COURS
@@ -27,7 +27,7 @@ CREATE TABLE AVIS_COURS (
     commentaire_cours longtext  NULL COMMENT 'De 0 à 5',
     CONSTRAINT AVIS_COURS_pk PRIMARY KEY (UTILISATEURS_num_utilisateur,COURS_num_cours)
 ) COMMENT 'Cela correspond à l''''avis donné par un étudiant sur un cours pour lequel il est inscrit. Les avis sont optionnels
-L''''attribut note prends pour valeur un type "Integer" entre 1 et 5. 
+L''''attribut note prends pour valeur un type "Integer" entre 1 et 5.
 L''''attribut commentaire_cours lui reste optionnel laissant ainsi le choix à l''''étudiant d''''ajouter (ou pas) un commentaire en plus de la note attribuée au cours.
 Pour le schéma logique intitule_cours, num_utilisateur, seront introduites en clés étrangères (FK) et clés primaires (PK) pour cette table pour reconnaître de manière unique la note et l''''éventuel commentaire qu''''un étudiant E attribut à un cours C.';
 
@@ -37,7 +37,7 @@ CREATE TABLE CHAPITRES (
     num_chapitre int  NOT NULL COMMENT 'Exemple : 1 pour chapitre 1. Permet d''''ordonner les chapitres (ordre croissant)',
     titre_chapitre varchar(255)  NOT NULL COMMENT 'Ajout de notre part, nous ne voyons pas un chapitre sans titre.',
     CONSTRAINT CHAPITRES_pk PRIMARY KEY (num_chapitre,COURS_num_cours)
-) COMMENT 'Les cours contiennent des chapitres qui eux mêmes contiennent  des parties. 
+) COMMENT 'Les cours contiennent des chapitres qui eux mêmes contiennent  des parties.
 Un chapitre représente une subdivision d''''un cours et sert à regrouper les parties d''''un cours.
 Pour le schéma logique intitule_cours sera introduit en clé étrangère (FK) pour cette table dans le schéma logique. Aussi, la clé primaire (PK)  sera composé de cette dernière et de num_chapitre pour cette table afin d''''identifier de manière unique, un chapitre d''''un cours.';
 
@@ -118,18 +118,18 @@ CREATE TABLE PROGRESSIONS (
     PARTIES_num_partie int  NOT NULL COMMENT 'Permet d''''ordonner par partie si besoin',
     partie_termine varchar(3)  NOT NULL,
     CONSTRAINT PROGRESSIONS_pk PRIMARY KEY (PARTIES_num_partie,UTILISATEURS_num_utilisateur,COURS_num_cours,CHAPITRES_num_chapitre)
-) COMMENT 'La progression permet à l''''étudiant de marquer une partie d''''un cours comme terminé ou non. 
+) COMMENT 'La progression permet à l''''étudiant de marquer une partie d''''un cours comme terminé ou non.
 Pour le schéma logique num_utilisateur, intitule_cours, num_chapitre, num_partie seront introduites comme clés étrangères (FK) et clés primaires (PK) pour cette table afin d''''identifier de manière unique quelle partie de quel cours, un étudiant à terminé (ou non).';
 
 -- Table: ROLES
 CREATE TABLE ROLES (
-    num_role int  NOT NULL COMMENT 'L''''identifiant des différents rôles. 
+    num_role int  NOT NULL COMMENT 'L''''identifiant des différents rôles.
 1 = administrateur
 2 = créateurs de cours
 3= personnels adnministratifs
 4 = étudiants
 5 = formateurs',
-    role varchar(255)  NOT NULL COMMENT 'Correspond aux différents rôles que les utilisateurs peuvent avoir : administrateur, créateurs de cours, personnels adnministratifs, étudiants, formateurs' CHECK (role IN ('Administrateur', 'Personnel administratif', 'Créateur de cours', 'Formateur', 'Étudiant')) ),
+    role text  NOT NULL COMMENT 'Correspond aux différents rôles que les utilisateurs peuvent avoir : administrateur, créateurs de cours, personnels adnministratifs, étudiants, formateurs' CHECK (role IN ('Administrateur', 'Personnel administratif', 'Créateur de cours', 'Formateur', 'Étudiant')),
     CONSTRAINT ROLES_pk PRIMARY KEY (num_role)
 ) COMMENT 'Il s''''agit des différents rôles que peuvent avoir les utilisateurs : créateurs de contenu, personnels administratifs, administrateurs, formateurs et étudiants. ';
 
@@ -155,9 +155,9 @@ CREATE TABLE TENTATIVES_EXAMENS (
     score_obtenu int  NOT NULL CHECK (score_obtenu>= 0 AND score_obtenu<= 100),
     valide varchar(3)  NOT NULL,
     CONSTRAINT TENTATIVES_EXAMENS_pk PRIMARY KEY (num_tentative,EXAMENS_num_examen,UTILISATEURS_num_utilisateur)
-) COMMENT 'Cette entité retrace l''''historique de toutes les tentatives de tous les étudiants effectuées pour tous les examens disponibles dans l''''entité examens. 
-L''''attribut score_obtenu est de type "Integer" avec une valeur entre 0 et 100. 
-On suppose qu''''un étudiant a droit à une tentative par jour. 
+) COMMENT 'Cette entité retrace l''''historique de toutes les tentatives de tous les étudiants effectuées pour tous les examens disponibles dans l''''entité examens.
+L''''attribut score_obtenu est de type "Integer" avec une valeur entre 0 et 100.
+On suppose qu''''un étudiant a droit à une tentative par jour.
 L''''attribut num_tentative retrace le nombre total de tentatives effectuées sur tous les cours par tous les étudiants.
 Pour le schéma logique, num_utilisateur, num_examen, seront introduites en clés étrangères (FK) pour cette table dans le schéma logique. Aussi, la clé primaire (PK)  sera composé de ces dernières et de num_tentative pour cette table. Ceci permettra d''''identifier de manière unique une tentative d''''un examen effectuée par un étudiant.';
 
@@ -179,7 +179,7 @@ CREATE TABLE UTILISATEURS_COURS (
 -- Table: UTILISATEURS_ROLES
 CREATE TABLE UTILISATEURS_ROLES (
     UTILISATEURS_num_utilisateur int  NOT NULL COMMENT 'L''''identifiant de chaque utilisateur.',
-    ROLES_num_role int  NOT NULL COMMENT 'L''''identifiant des différents rôles. 
+    ROLES_num_role int  NOT NULL COMMENT 'L''''identifiant des différents rôles.
 1 = administrateur
 2 = créateurs de cours
 3= personnels adnministratifs

@@ -29,7 +29,7 @@ final class ChapitresFactory extends Factory
         return [
             'COURS_num_cours' => \App\Models\Cours::factory(),
             'num_chapitre' => fake()->randomNumber(),
-            'titre_chapitre' => fake()->text,
+            'titre_chapitre' => fake()->word,
         ];
     }
 }

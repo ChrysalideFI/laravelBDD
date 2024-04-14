@@ -31,7 +31,7 @@ final class ProgressionsFactory extends Factory
             'COURS_num_cours' => fake()->randomNumber(),
             'CHAPITRES_num_chapitre' => fake()->randomNumber(),
             'PARTIES_num_partie' => \App\Models\Parties::factory(),
-            'partie_termine' => fake()->boolean,
+            'partie_termine' => fake()->word,
         ];
     }
 }

@@ -29,7 +29,7 @@ final class SessionsFactory extends Factory
         return [
             'num_session' => fake()->randomNumber(),
             'COURS_num_cours' => \App\Models\Cours::factory(),
-            'format_session' => fake()->text,
+            'format_session' => fake()->word,
             'date_heure_debut' => fake()->dateTime(),
             'date_heure_fin' => fake()->dateTime(),
             'places_max' => fake()->optional()->randomNumber(),

@@ -31,7 +31,7 @@ final class ExamensFactory extends Factory
             'COURS_num_cours' => fake()->randomNumber(),
             'CHAPITRES_num_chapitre' => fake()->randomNumber(),
             'PARTIES_num_partie' => \App\Models\Parties::factory(),
-            'titre_exam' => fake()->text,
+            'titre_exam' => fake()->word,
             'contenu_exam' => fake()->text,
             'score_minimum' => fake()->randomNumber(),
         ];

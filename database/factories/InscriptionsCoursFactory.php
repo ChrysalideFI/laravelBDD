@@ -31,9 +31,9 @@ final class InscriptionsCoursFactory extends Factory
             'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
             'COURS_num_cours' => \App\Models\Cours::factory(),
             'montant_paye' => fake()->randomFloat(),
-            'paye' => fake()->boolean,
+            'paye' => fake()->word,
             'date_paiement' => fake()->date(),
-            'inscription_valide' => fake()->boolean,
+            'inscription_valide' => fake()->word,
             'date_insc_cours' => fake()->date(),
         ];
     }

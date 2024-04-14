@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $COURS_num_cours
  * @property int $CHAPITRES_num_chapitre
  * @property int $PARTIES_num_partie
- * @property bool $partie_termine
+ * @property string $partie_termine
  * 
  * @property Parties $parties
  * @property Utilisateurs $utilisateurs
@@ -34,8 +34,7 @@ class Progressions extends Model
 		'UTILISATEURS_num_utilisateur' => 'int',
 		'COURS_num_cours' => 'int',
 		'CHAPITRES_num_chapitre' => 'int',
-		'PARTIES_num_partie' => 'int',
-		'partie_termine' => 'bool'
+		'PARTIES_num_partie' => 'int'
 	];
 
 	protected $fillable = [

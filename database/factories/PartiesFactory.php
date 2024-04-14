@@ -30,7 +30,7 @@ final class PartiesFactory extends Factory
             'COURS_num_cours' => fake()->randomNumber(),
             'CHAPITRES_num_chapitre' => \App\Models\Chapitres::factory(),
             'num_partie' => fake()->randomNumber(),
-            'titre_partie' => fake()->text,
+            'titre_partie' => fake()->word,
             'contenu_partie' => fake()->text,
         ];
     }

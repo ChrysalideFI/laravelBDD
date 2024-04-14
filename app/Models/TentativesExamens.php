@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $num_tentative
  * @property Carbon $date_tentative
  * @property int $score_obtenu
- * @property bool $valide
+ * @property string $valide
  * 
  * @property Utilisateurs $utilisateurs
  * @property Examens $examens
@@ -37,8 +37,7 @@ class TentativesExamens extends Model
 		'EXAMENS_num_examen' => 'int',
 		'num_tentative' => 'int',
 		'date_tentative' => 'datetime',
-		'score_obtenu' => 'int',
-		'valide' => 'bool'
+		'score_obtenu' => 'int'
 	];
 
 	protected $fillable = [
