@@ -27,8 +27,8 @@ final class UtilisateursRolesFactory extends Factory
     public function definition(): array
     {
         return [
-            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            'ROLES_num_role' => \App\Models\Roles::factory(),
+            // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
+            // 'ROLES_num_role' => \App\Models\Roles::factory(),
         ];
     }
 }

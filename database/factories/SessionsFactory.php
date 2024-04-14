@@ -25,14 +25,14 @@ final class SessionsFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_session = 1;
         return [
-            'num_session' => fake()->randomNumber(),
-            'COURS_num_cours' => \App\Models\Cours::factory(),
-            'format_session' => fake()->word,
+            'num_session' => $num_session++,
+            //'COURS_num_cours' => \App\Models\Cours::factory(),
+            'format_session' => fake()->text,
             'date_heure_debut' => fake()->dateTime(),
             'date_heure_fin' => fake()->dateTime(),
-            'places_max' => fake()->optional()->randomNumber(),
+            'places_max' => fake()->optional()->numberBetween(10, 50),
         ];
     }
 }

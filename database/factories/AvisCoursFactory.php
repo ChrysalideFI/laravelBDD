@@ -27,9 +27,9 @@ final class AvisCoursFactory extends Factory
     public function definition(): array
     {
         return [
-            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            'COURS_num_cours' => \App\Models\Cours::factory(),
-            'note_cours' => fake()->randomNumber(),
+            'UTILISATEURS_num_utilisateur' =>  \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'note_cours' => rand(0, 5),
             'commentaire_cours' => fake()->optional()->text,
         ];
     }

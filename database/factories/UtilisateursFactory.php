@@ -25,11 +25,11 @@ final class UtilisateursFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_utilisateur = 1;
         return [
-            'num_utilisateur' => fake()->randomNumber(),
-            'nom' => fake()->word,
-            'prenom' => fake()->word,
+            'num_utilisateur' => $num_utilisateur++,
+            'nom' => $this->faker->lastName(),
+            'prenom' =>  $this->faker->firstName(),
         ];
     }
 }

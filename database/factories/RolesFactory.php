@@ -26,9 +26,13 @@ final class RolesFactory extends Factory
     */
     public function definition(): array
     {
+        static $num_role = 1;
+        static $role_index = 0;
+        $roles = ['Administrateur', 'Formateur', 'Etudiant', 'Personne administrative', 'Créateur de cours'];
+
         return [
-            'num_role' => fake()->randomNumber(),
-            'role' => fake()->text,
+            'num_role' => $num_role++,
+            'role' => $roles[$role_index++ % count($roles)]
         ];
     }
 }

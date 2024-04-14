@@ -25,11 +25,11 @@ final class ChapitresFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_chapitre = 1;
         return [
-            'COURS_num_cours' => \App\Models\Cours::factory(),
-            'num_chapitre' => fake()->randomNumber(),
-            'titre_chapitre' => fake()->word,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'num_chapitre' => $num_chapitre++,
+            'titre_chapitre' => $this->faker->sentence,
         ];
     }
 }
