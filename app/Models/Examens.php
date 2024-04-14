@@ -31,9 +31,11 @@ class Examens extends Model
 	use HasFactory;
 	protected $table = 'examens';
 	protected $primaryKey = 'num_examen';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'num_examen' => 'int',
 		'COURS_num_cours' => 'int',
 		'CHAPITRES_num_chapitre' => 'int',
 		'PARTIES_num_partie' => 'int',

@@ -33,7 +33,12 @@ class Utilisateurs extends Model
 	use HasFactory;
 	protected $table = 'utilisateurs';
 	protected $primaryKey = 'num_utilisateur';
+	public $incrementing = false;
 	public $timestamps = false;
+
+	protected $casts = [
+		'num_utilisateur' => 'int'
+	];
 
 	protected $fillable = [
 		'nom',

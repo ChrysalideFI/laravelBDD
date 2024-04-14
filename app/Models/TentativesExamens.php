@@ -29,11 +29,13 @@ class TentativesExamens extends Model
 {
 	use HasFactory;
 	protected $table = 'tentatives_examens';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
 		'UTILISATEURS_num_utilisateur' => 'int',
 		'EXAMENS_num_examen' => 'int',
+		'num_tentative' => 'int',
 		'date_tentative' => 'datetime',
 		'score_obtenu' => 'int',
 		'valide' => 'bool'

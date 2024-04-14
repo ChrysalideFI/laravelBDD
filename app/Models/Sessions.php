@@ -31,9 +31,11 @@ class Sessions extends Model
 {
 	use HasFactory;
 	protected $table = 'sessions';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'num_session' => 'int',
 		'COURS_num_cours' => 'int',
 		'date_heure_debut' => 'datetime',
 		'date_heure_fin' => 'datetime',

@@ -38,9 +38,11 @@ class Cours extends Model
 	use HasFactory;
 	protected $table = 'cours';
 	protected $primaryKey = 'num_cours';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'num_cours' => 'int',
 		'prix_cours' => 'float',
 		'date_debut' => 'datetime',
 		'date_fin' => 'datetime',

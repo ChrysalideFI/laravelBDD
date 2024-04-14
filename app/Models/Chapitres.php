@@ -26,10 +26,12 @@ class Chapitres extends Model
 {
 	use HasFactory;
 	protected $table = 'chapitres';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'COURS_num_cours' => 'int'
+		'COURS_num_cours' => 'int',
+		'num_chapitre' => 'int'
 	];
 
 	protected $fillable = [

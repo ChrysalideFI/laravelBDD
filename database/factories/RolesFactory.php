@@ -27,6 +27,7 @@ final class RolesFactory extends Factory
     public function definition(): array
     {
         return [
+            'num_role' => fake()->randomNumber(),
             'role' => fake()->text,
         ];
     }

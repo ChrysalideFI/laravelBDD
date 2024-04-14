@@ -36,7 +36,7 @@ Pour le sch├®ma logique les attributs intitule_cours, num_utilisateur, num_se
 
         Schema::create('avis_cours', function (Blueprint $table) {
             $table->comment('Cela correspond ├á l\'\'avis donn├® par un ├®tudiant sur un cours pour lequel il est inscrit. Les avis sont optionnels
-L\'\'attribut note prends pour valeur un type "Integer" entre 1 et 5.
+L\'\'attribut note prends pour valeur un type "Integer" entre 1 et 5. 
 L\'\'attribut commentaire_cours lui reste optionnel laissant ainsi le choix ├á l\'\'├®tudiant d\'\'ajouter (ou pas) un commentaire en plus de la note attribu├®e au cours.
 Pour le sch├®ma logique intitule_cours, num_utilisateur, seront introduites en cl├®s ├®trang├¿res (FK) et cl├®s primaires (PK) pour cette table pour reconna├«tre de mani├¿re unique la note et l\'\'├®ventuel commentaire qu\'\'un ├®tudiant E attribut ├á un cours C.');
             $table->integer('UTILISATEURS_num_utilisateur')->comment('L\'\'identifiant de chaque utilisateur.');
@@ -48,7 +48,7 @@ Pour le sch├®ma logique intitule_cours, num_utilisateur, seront introduites e
         });
 
         Schema::create('chapitres', function (Blueprint $table) {
-            $table->comment('Les cours contiennent des chapitres qui eux m├¬mes contiennent  des parties.
+            $table->comment('Les cours contiennent des chapitres qui eux m├¬mes contiennent  des parties. 
 Un chapitre repr├®sente une subdivision d\'\'un cours et sert ├á regrouper les parties d\'\'un cours.
 Pour le sch├®ma logique intitule_cours sera introduit en cl├® ├®trang├¿re (FK) pour cette table dans le sch├®ma logique. Aussi, la cl├® primaire (PK)  sera compos├® de cette derni├¿re et de num_chapitre pour cette table afin d\'\'identifier de mani├¿re unique, un chapitre d\'\'un cours.');
             $table->integer('COURS_num_cours')->index('chapitres_cours');
@@ -61,7 +61,7 @@ Pour le sch├®ma logique intitule_cours sera introduit en cl├® ├®trang�
         Schema::create('cours', function (Blueprint $table) {
             $table->comment('Il s\'\'agit des cours sur la plateforme qui sont suivies par les ├®tudiants, associ├®s ├á des formateurs. Ils peuvent ├¬tre comment├®s et not├®s. Ils sont r├®parties en chapitres. Ils peuvent parfois avoir des sessions associ├®s. Pour suivre un cours il faut s\'\'y inscrire. Les cours peuvent ├¬tre cr├®er, ├®diter ou supprimer par certains types d\'\'utilisateurs (r├┤les d\'\'utilisateur).
 Nous consid├®rons que l\'\'intitul├® de chaque cours est unique.');
-            $table->integer('num_cours', true);
+            $table->integer('num_cours')->primary();
             $table->text('intitule_cours')->comment('Identifiant d\'\'un cours, nous consid├®rons que deux cours ne se nomment jamais de la m├¬me mani├¿re.');
             $table->text('description')->comment('Description du cours.');
             $table->text('pre_requis')->comment('Pr├®-requis du cours.');
@@ -77,7 +77,7 @@ Nous consid├®rons que l\'\'intitul├® de chaque cours est unique.');
 L\'\'attribut score_minimum est de type "Integer" avec une valeur entre 40 et 100.
 
 Pour le sch├®ma logique, intitule_cours, num_chapitre, num_partie seront introduites en cl├®s ├®trang├¿res (FK) et identifiants secondaires (alternative unique keys) pour cette table afin d\'\'identifier de mani├¿re unique, sur quelle partie porte un examen pr├®cis.');
-            $table->integer('num_examen', true);
+            $table->integer('num_examen')->primary();
             $table->integer('COURS_num_cours');
             $table->integer('CHAPITRES_num_chapitre');
             $table->integer('PARTIES_num_partie')->comment('Permet d\'\'ordonner par partie si besoin');
@@ -93,7 +93,7 @@ Pour le sch├®ma logique, intitule_cours, num_chapitre, num_partie seront intr
             $table->comment('Cela correspond ├á l\'\'inscription des ├®tudiants ├á des cours. Si un cours est payant, l\'\'├®tudiant devra pay├® avant que son inscription ne soit effective.
 Nous consid├®rons qu\'\'un ├®tudiant ne s\'\'inscrit pas deux fois ├á un m├¬me cours ce qui garantit l\'\'unicit├®.
 Pour le sch├®ma logique, num_utilisateur, intitule_cours seront introduites en cl├®s ├®trang├¿res (FK) et identifiants secondaires (alternative unique keys) pour cette table.');
-            $table->integer('num_inscription', true);
+            $table->integer('num_inscription')->primary();
             $table->integer('UTILISATEURS_num_utilisateur')->comment('L\'\'identifiant de chaque utilisateur.');
             $table->integer('COURS_num_cours')->index('inscriptions_cours_cours');
             $table->decimal('montant_paye', 6)->comment('Correspond au prix du cours. Peut valoir 0 si le cours est gratuit. Ne peut pas avoir un nombre n├®gatif.');
@@ -122,7 +122,7 @@ Pour le sch├®ma logique, num_inscription, num_session et intitule_cours, sero
 Pour le sch├®ma logique intitule_cours, num_chapitre, seront introduites en cl├®s ├®trang├¿res (FK) pour cette table dans le sch├®ma logique. Aussi, la cl├® primaire (PK)  sera compos├® de ces derni├¿res et de num_partie pour cette table afin d\'\'identifier de mani├¿re unique une partie P d\'\'un cours C ainsi que le chapitre dans lequel il se trouve.');
             $table->integer('COURS_num_cours');
             $table->integer('CHAPITRES_num_chapitre')->comment('Exemple : 1 pour chapitre 1. Permet d\'\'ordonner les chapitres (ordre croissant)');
-            $table->integer('num_partie', true)->comment('Permet d\'\'ordonner par partie si besoin');
+            $table->integer('num_partie')->comment('Permet d\'\'ordonner par partie si besoin');
             $table->text('titre_partie');
             $table->text('contenu_partie');
 
@@ -131,7 +131,7 @@ Pour le sch├®ma logique intitule_cours, num_chapitre, seront introduites en c
         });
 
         Schema::create('progressions', function (Blueprint $table) {
-            $table->comment('La progression permet ├á l\'\'├®tudiant de marquer une partie d\'\'un cours comme termin├® ou non.
+            $table->comment('La progression permet ├á l\'\'├®tudiant de marquer une partie d\'\'un cours comme termin├® ou non. 
 Pour le sch├®ma logique num_utilisateur, intitule_cours, num_chapitre, num_partie seront introduites comme cl├®s ├®trang├¿res (FK) et cl├®s primaires (PK) pour cette table afin d\'\'identifier de mani├¿re unique quelle partie de quel cours, un ├®tudiant ├á termin├® (ou non).');
             $table->integer('UTILISATEURS_num_utilisateur')->index('utilsateurs_progressions')->comment('L\'\'identifiant de chaque utilisateur.');
             $table->integer('COURS_num_cours');
@@ -145,7 +145,7 @@ Pour le sch├®ma logique num_utilisateur, intitule_cours, num_chapitre, num_pa
 
         Schema::create('roles', function (Blueprint $table) {
             $table->comment('Il s\'\'agit des diff├®rents r├┤les que peuvent avoir les utilisateurs : cr├®ateurs de contenu, personnels administratifs, administrateurs, formateurs et ├®tudiants. ');
-            $table->integer('num_role', true)->comment('L\'\'identifiant des diff├®rents r├┤les.
+            $table->integer('num_role')->primary()->comment('L\'\'identifiant des diff├®rents r├┤les. 
 1 = administrateur
 2 = cr├®ateurs de cours
 3= personnels adnministratifs
@@ -157,7 +157,7 @@ Pour le sch├®ma logique num_utilisateur, intitule_cours, num_chapitre, num_pa
         Schema::create('sessions', function (Blueprint $table) {
             $table->comment('Les cours ont parfois des sessions en direct (en pr├®sentiel ou distanciel) avec un ou plusieurs formateurs.
 Pour le sch├®ma logique, intitule_cours, sera introduit en cl├® ├®trang├¿re (FK) pour cette table dans le sch├®ma logique. Aussi, la cl├® primaire (PK)  sera compos├® de cette derni├¿re et de num_session pour cette table .');
-            $table->integer('num_session', true)->comment('L\'\'identifiant des sessions.');
+            $table->integer('num_session')->comment('L\'\'identifiant des sessions.');
             $table->integer('COURS_num_cours')->index('sessions_cours');
             $table->text('format_session')->comment('Les sessions peuvent ├¬tre en "pr├®sentiel" ou "distanciel".');
             $table->dateTime('date_heure_debut')->comment('Se rapporte ├á la date et heure du d├®but de la session.');
@@ -168,14 +168,14 @@ Pour le sch├®ma logique, intitule_cours, sera introduit en cl├® ├®trang
         });
 
         Schema::create('tentatives_examens', function (Blueprint $table) {
-            $table->comment('Cette entit├® retrace l\'\'historique de toutes les tentatives de tous les ├®tudiants effectu├®es pour tous les examens disponibles dans l\'\'entit├® examens.
-L\'\'attribut score_obtenu est de type "Integer" avec une valeur entre 0 et 100.
-On suppose qu\'\'un ├®tudiant a droit ├á une tentative par jour.
+            $table->comment('Cette entit├® retrace l\'\'historique de toutes les tentatives de tous les ├®tudiants effectu├®es pour tous les examens disponibles dans l\'\'entit├® examens. 
+L\'\'attribut score_obtenu est de type "Integer" avec une valeur entre 0 et 100. 
+On suppose qu\'\'un ├®tudiant a droit ├á une tentative par jour. 
 L\'\'attribut num_tentative retrace le nombre total de tentatives effectu├®es sur tous les cours par tous les ├®tudiants.
 Pour le sch├®ma logique, num_utilisateur, num_examen, seront introduites en cl├®s ├®trang├¿res (FK) pour cette table dans le sch├®ma logique. Aussi, la cl├® primaire (PK)  sera compos├® de ces derni├¿res et de num_tentative pour cette table. Ceci permettra d\'\'identifier de mani├¿re unique une tentative d\'\'un examen effectu├®e par un ├®tudiant.');
             $table->integer('UTILISATEURS_num_utilisateur')->index('tentatives_examens_utilsateurs')->comment('L\'\'identifiant de chaque utilisateur.');
             $table->integer('EXAMENS_num_examen')->index('tentative_examen');
-            $table->integer('num_tentative', true);
+            $table->integer('num_tentative');
             $table->date('date_tentative');
             $table->integer('score_obtenu');
             $table->boolean('valide');
@@ -185,7 +185,7 @@ Pour le sch├®ma logique, num_utilisateur, num_examen, seront introduites en c
 
         Schema::create('utilisateurs', function (Blueprint $table) {
             $table->comment('Il s\'\'agit de tous les utilisateurs de la plateforme et de leurs informations personnelles associ├®es.');
-            $table->integer('num_utilisateur', true)->comment('L\'\'identifiant de chaque utilisateur.');
+            $table->integer('num_utilisateur')->primary()->comment('L\'\'identifiant de chaque utilisateur.');
             $table->text('nom')->comment('Le nom de chaque utilisateur. ');
             $table->text('prenom')->comment('Le pr├®nom d\'\'un utilisateur. S\'\'il a plusieurs pr├®noms, seul le premier pr├®nom est pris en compte.');
         });
@@ -199,7 +199,7 @@ Pour le sch├®ma logique, num_utilisateur, num_examen, seront introduites en c
 
         Schema::create('utilisateurs_roles', function (Blueprint $table) {
             $table->integer('UTILISATEURS_num_utilisateur')->comment('L\'\'identifiant de chaque utilisateur.');
-            $table->integer('ROLES_num_role')->index('utilisateurs_roles_roles')->comment('L\'\'identifiant des diff├®rents r├┤les.
+            $table->integer('ROLES_num_role')->index('utilisateurs_roles_roles')->comment('L\'\'identifiant des diff├®rents r├┤les. 
 1 = administrateur
 2 = cr├®ateurs de cours
 3= personnels adnministratifs

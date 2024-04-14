@@ -25,7 +25,12 @@ class Roles extends Model
 	use HasFactory;
 	protected $table = 'roles';
 	protected $primaryKey = 'num_role';
+	public $incrementing = false;
 	public $timestamps = false;
+
+	protected $casts = [
+		'num_role' => 'int'
+	];
 
 	protected $fillable = [
 		'role'

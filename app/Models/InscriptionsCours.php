@@ -34,9 +34,11 @@ class InscriptionsCours extends Model
 	use HasFactory;
 	protected $table = 'inscriptions_cours';
 	protected $primaryKey = 'num_inscription';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
+		'num_inscription' => 'int',
 		'UTILISATEURS_num_utilisateur' => 'int',
 		'COURS_num_cours' => 'int',
 		'montant_paye' => 'float',

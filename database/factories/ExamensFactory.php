@@ -27,6 +27,7 @@ final class ExamensFactory extends Factory
     public function definition(): array
     {
         return [
+            'num_examen' => fake()->randomNumber(),
             'COURS_num_cours' => fake()->randomNumber(),
             'CHAPITRES_num_chapitre' => fake()->randomNumber(),
             'PARTIES_num_partie' => \App\Models\Parties::factory(),

@@ -27,6 +27,7 @@ final class CoursFactory extends Factory
     public function definition(): array
     {
         return [
+            'num_cours' => fake()->randomNumber(),
             'intitule_cours' => fake()->text,
             'description' => fake()->text,
             'pre_requis' => fake()->text,

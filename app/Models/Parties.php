@@ -29,11 +29,13 @@ class Parties extends Model
 {
 	use HasFactory;
 	protected $table = 'parties';
+	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
 		'COURS_num_cours' => 'int',
-		'CHAPITRES_num_chapitre' => 'int'
+		'CHAPITRES_num_chapitre' => 'int',
+		'num_partie' => 'int'
 	];
 
 	protected $fillable = [

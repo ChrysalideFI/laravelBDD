@@ -27,6 +27,7 @@ final class UtilisateursFactory extends Factory
     public function definition(): array
     {
         return [
+            'num_utilisateur' => fake()->randomNumber(),
             'nom' => fake()->text,
             'prenom' => fake()->text,
         ];
