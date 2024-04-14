@@ -28,7 +28,7 @@ final class RolesFactory extends Factory
     {
         static $num_role = 1;
         static $role_index = 0;
-        $roles = ['Administrateur', 'Formateur', 'Etudiant', 'Personne administrative', 'Créateur de cours'];
+        $roles = ['Administrateur', 'Formateur', 'Etudiant', 'Personnel administratif', 'Créateur de cours'];
 
         return [
             'num_role' => $num_role++,
