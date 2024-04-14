@@ -25,15 +25,15 @@ final class InscriptionsCoursFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_inscription = 1;
         return [
-            'num_inscription' => fake()->randomNumber(),
-            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::factory(),
-            'COURS_num_cours' => \App\Models\Cours::factory(),
-            'montant_paye' => fake()->randomFloat(),
-            'paye' => fake()->word,
+            'num_inscription' => $num_inscription++,
+            'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'montant_paye' => $this->faker->optional(0.5)->randomFloat(2, 0, 1000) ?? 0,
+            'paye' => $this->faker->randomElement(['oui', 'non']),
             'date_paiement' => fake()->date(),
-            'inscription_valide' => fake()->word,
+            'inscription_valide' => $this->faker->randomElement(['oui', 'non']),
             'date_insc_cours' => fake()->date(),
         ];
     }

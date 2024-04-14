@@ -10,6 +10,7 @@ use App\Models\Utilisateurs;
 use App\Models\Roles;
 use App\Models\UtilisateursRoles;
 use App\Models\AvisCours;
+use App\Models\Progressions;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -95,31 +96,96 @@ class DatabaseSeeder extends Seeder
     //chapitres
     $cours = \App\Models\Cours::all();
 
-foreach ($cours as $unCours) {
-    $numChapitres = rand(3, 6);
+    foreach ($cours as $unCours) {
+        $numChapitres = rand(3, 6);
 
-    for ($i = 0; $i < $numChapitres; $i++) {
-        $chapitre = \App\Models\Chapitres::factory()->createOne([
-            'COURS_num_cours' => $unCours->num_cours,
-            'num_chapitre' => $i + 1,
-            // Add any other fields you need here
-        ]);
-
-        $numParties = rand(2, 5);
-
-        for ($j = 0; $j < $numParties; $j++) {
-            \App\Models\Parties::factory()->create([
+        for ($i = 0; $i < $numChapitres; $i++) {
+            $chapitre = \App\Models\Chapitres::factory()->createOne([
                 'COURS_num_cours' => $unCours->num_cours,
-                'CHAPITRES_num_chapitre' => $chapitre->num_chapitre,
-                'num_partie' => $j + 1,
-                'progression' => rand(1, 1),
+                'num_chapitre' => $i + 1,
+                // Add any other fields you need here
             ]);
+
+            $numParties = rand(2, 5);
+
+            for ($j = 0; $j < $numParties; $j++) {
+                \App\Models\Parties::factory()->create([
+                    'COURS_num_cours' => $unCours->num_cours,
+                    'CHAPITRES_num_chapitre' => $chapitre->num_chapitre,
+                    'num_partie' => $j + 1,
+                ]);
+            }
         }
+
     }
 
+        $progression = Progressions::factory()->count(20)->create();
+
+
+        // Générer 50 inscriptions de cours
+        for ($i = 0; $i < 50; $i++) {
+            // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
+            $usersWithRole3 = \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get();
+            $utilisateur = $usersWithRole3->random();
+
+            \App\Models\InscriptionsCours::factory()->create([
+                'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+            ]);
+        }
+
+         // Générer 50 inscriptions de sessions
+        for ($i = 0; $i < 50; $i++) {
+        // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
+        $utilisateur = $usersWithRole3->random();
+
+        \App\Models\InscriptionsSessions::factory()->create([
+            'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+        ]);
+    }
+
+      // Récupérer toutes les parties
+      $parties = \App\Models\Parties::all();
+
+      // Pour chaque partie
+      foreach ($parties as $partie) {
+          // Créer un examen lié à cette partie
+          \App\Models\Examens::factory()->create([
+              'PARTIES_num_partie' => $partie->num_partie,
+              'COURS_num_cours' => $partie->chapitre->cours->num_cours,
+              'CHAPITRES_num_chapitre' => $partie->chapitre->num_chapitre,
+          ]);
+      }
+
+
+       // Récupérer toutes les inscriptions_cours
+       $inscriptionsCours = \App\Models\InscriptionsCours::all();
+
+       // Pour chaque inscription_cours
+       foreach ($inscriptionsCours as $inscriptionCours) {
+           // Récupérer tous les examens
+           $examens = \App\Models\Examens::all();
+
+           // Pour chaque examen
+           foreach ($examens as $examen) {
+               // Créer plusieurs tentatives d'examens
+               for ($i = 0; $i < 3; $i++) {
+                   \App\Models\TentativesExamens::factory()->create([
+                       'UTILISATEURS_num_utilisateur' => $inscriptionCours->UTILISATEURS_num_utilisateur,
+                       'EXAMENS_num_examen' => $examen->num_examen,
+                   ]);
+               }
+           }
+       }
+
+
+    }
 }
-}
-}
+
+
+
+
+
+
 
 
 

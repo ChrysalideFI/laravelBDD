@@ -25,15 +25,15 @@ final class ExamensFactory extends Factory
     * @return array
     */
     public function definition(): array
-    {
+    { static $num_examen = 1;
         return [
-            'num_examen' => fake()->randomNumber(),
-            'COURS_num_cours' => fake()->randomNumber(),
-            'CHAPITRES_num_chapitre' => fake()->randomNumber(),
-            'PARTIES_num_partie' => \App\Models\Parties::factory(),
+            'num_examen' => $num_examen++,
+            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            'CHAPITRES_num_chapitre' => \App\Models\Chapitres::inRandomOrder()->first()->num_chapitre,
+            'PARTIES_num_partie' => \App\Models\Parties::inRandomOrder()->first()->num_partie,
             'titre_exam' => fake()->word,
             'contenu_exam' => fake()->text,
-            'score_minimum' => fake()->randomNumber(),
+            'score_minimum' => $this->faker->numberBetween(40, 100),
         ];
     }
 }
