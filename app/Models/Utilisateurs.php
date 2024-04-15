@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Utilisateurs
- * 
+ *
  * @property int $num_utilisateur
  * @property string $nom
  * @property string $prenom
- * 
+ *
  * @property Collection|AssignationsCours[] $assignations_cours
  * @property Collection|AssignationsSessions[] $assignations_sessions
  * @property Collection|AvisCours[] $avis_cours
