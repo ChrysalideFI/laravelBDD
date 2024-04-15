@@ -43,7 +43,9 @@ final class InscriptionsCoursFactory extends Factory
     {static $num_inscription = 1;
     return [
         'num_inscription' => $num_inscription++,
-        'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+        // 'UTILISATEURS_num_utilisateur' => \App\Models\Utilisateurs::inRandomOrder()->first()->num_utilisateur,
+        // 'UTILISATEURS_num_utilisateur' => \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get(),
+        // 'UTILISATEURS_num_utilisateur' => \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->inRandomOrder()->first()->UTILISATEURS_num_utilisateur,
         'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
         'montant_paye' => $this->faker->optional(0.5)->randomFloat(2, 0, 1000) ?? 0,
         'paye' => $this->faker->randomElement(['oui', 'non']),

@@ -52,9 +52,10 @@ final class AvisCoursFactory extends Factory
 
         try {
             return [
-                'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
-                'COURS_num_cours' => $cours->num_cours,
-                'note_cours' => rand(0, 5),
+                // 'UTILISATEURS_num_utilisateur' => \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get(),
+                'UTILISATEURS_num_utilisateur' => \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->inRandomOrder()->first()->UTILISATEURS_num_utilisateur,
+                'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+                'note_cours' => rand(1, 5),
                 'commentaire_cours' => $this->faker->optional()->text,
             ];
         } catch (\Illuminate\Database\QueryException $e) {

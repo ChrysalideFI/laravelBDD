@@ -85,13 +85,12 @@ class DatabaseSeeder extends Seeder
 
         AvisCours::factory()->count(3)->create();
     //    $usersWithRole3 = \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->get();
-    //     for ($i = 0; $i < 10; $i++) {
+    //     for ($i = 0; $i < 3; $i++) {
     //         \App\Models\AvisCours::factory()->create([
     //             'UTILISATEURS_num_utilisateur' => $usersWithRole3->random()->num_utilisateur,
-    //             'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
-    //             // Add any other fields you need here
-    //         ]);
-    //     }
+                // 'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            // ]);
+        // }
 
     //chapitres
     $cours = \App\Models\Cours::all();
@@ -119,7 +118,7 @@ class DatabaseSeeder extends Seeder
 
     }
 
-        $progression = Progressions::factory()->count(20)->create();
+        $progression = Progressions::factory()->count(3)->create();
 
 
         // Générer 3 inscriptions de cours
@@ -129,32 +128,67 @@ class DatabaseSeeder extends Seeder
             $utilisateur = $usersWithRole3->random();
 
             \App\Models\InscriptionsCours::factory()->create([
-                'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+                // 'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+                'UTILISATEURS_num_utilisateur' => \App\Models\UtilisateursRoles::where('ROLES_num_role', 3)->inRandomOrder()->first()->UTILISATEURS_num_utilisateur,
             ]);
         }
 
-         // Générer 2 inscriptions de sessions
-        for ($i = 0; $i < 2; $i++) {
-        // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
-        $utilisateur = $usersWithRole3->random();
+        //  // Générer 2 inscriptions de sessions
+        // for ($i = 0; $i < 2; $i++) {
+        // // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
+        // $utilisateur = $usersWithRole3->random();
 
-        \App\Models\InscriptionsSessions::factory()->create([
-            'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+        // \App\Models\InscriptionsSessions::factory()->create([
+        //     // 'UTILISATEURS_num_utilisateur' => $utilisateur->num_utilisateur,
+        // ]);
+
+// Générer 2 inscriptions de sessions
+for ($i = 0; $i < 2; $i++) {
+    // Sélectionner un utilisateur aléatoire parmi les utilisateurs avec num_role=3
+    $utilisateur = $usersWithRole3->random();
+
+    // Selectionner une session aléatoire
+    $session = \App\Models\Sessions::inRandomOrder()->first();
+    $inscription = \App\Models\InscriptionsCours::inRandomOrder()->first();
+
+    \App\Models\InscriptionsSessions::factory()->create([
+        'SESSIONS_num_session' => $session->num_session,
+        'COURS_num_cours' => $session->COURS_num_cours,
+        'INSCRIPTIONS_COURS_num_inscription' => $inscription->num_inscription,
         ]);
-    }
+}
+
+
 
       // Récupérer toutes les parties
       $parties = \App\Models\Parties::all();
 
       // Pour chaque partie
-      foreach ($parties as $partie) {
-          // Créer un examen lié à cette partie
-          \App\Models\Examens::factory()->create([
-              'PARTIES_num_partie' => $partie->num_partie,
-              'COURS_num_cours' => $partie->chapitre->cours->num_cours,
-              'CHAPITRES_num_chapitre' => $partie->chapitre->num_chapitre,
-          ]);
-      }
+    //   foreach ($parties as $partie) {
+    //       // Créer un examen lié à cette partie
+    //       \App\Models\Examens::factory()->create([
+    //           'PARTIES_num_partie' => $partie->num_partie,
+    //         //   'COURS_num_cours' => $partie->chapitre->cours->num_cours,
+    //         'COURS_num_cours' => $partie->chapitre ? $partie->chapitre->cours->num_cours : null,
+    //         //   'CHAPITRES_num_chapitre' => $partie->chapitre->num_chapitre,
+    //         'CHAPITRES_num_chapitre' => $partie->chapitre ? $partie->chapitre->num_chapitre : null,
+    //     ]);
+    //   }
+
+    foreach ($parties as $partie) {
+        // Check if $partie->chapitre is not null
+        if ($partie->chapitre) {
+            \App\Models\Examens::factory()->create([
+                'PARTIES_num_partie' => $partie->num_partie,
+                'COURS_num_cours' => $partie->chapitre->cours->num_cours,
+                'CHAPITRES_num_chapitre' => $partie->chapitre->num_chapitre,
+            ]);
+        } else {
+            // Handle the case where $partie->chapitre is null
+            // For example, you could skip this iteration of the loop
+            continue;
+        }
+    }
 
 
        // Récupérer toutes les inscriptions_cours

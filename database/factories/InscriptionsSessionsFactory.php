@@ -27,10 +27,11 @@ final class InscriptionsSessionsFactory extends Factory
     public function definition(): array
     {
         return [
-            'SESSIONS_num_session' => \App\Models\Sessions::inRandomOrder()->first()->num_session,
-            'INSCRIPTIONS_COURS_num_inscription' => \App\Models\InscriptionsCours::inRandomOrder()->first()->num_inscription,
-            'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
+            // 'SESSIONS_num_session' => \App\Models\Sessions::inRandomOrder()->first()->num_session,
+            // 'INSCRIPTIONS_COURS_num_inscription' => \App\Models\InscriptionsCours::inRandomOrder()->first()->num_inscription,
+            // 'COURS_num_cours' => \App\Models\Cours::inRandomOrder()->first()->num_cours,
             'date_insc_session' => fake()->date(),
+
         ];
     }
 }
